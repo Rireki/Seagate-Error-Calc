@@ -13,5 +13,6 @@ Console app only.<br>
 The following compilation options have to be turned on if using MinGW<br>
 - Static libgcc
 - Static libstc++
-- Static Linking>br?
+- Static Linking
+<br>
 Or else the compiled app will only execute in Codeblocks but not outside of it.
