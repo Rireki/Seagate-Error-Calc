@@ -1,3 +1,6 @@
+/*2024/Nov/11
+    Riri Furikawa, commit 1.0
+    */
 #include <iostream>
 #include <iomanip>
 #include <sstream>
