@@ -1,11 +1,12 @@
 /*2024/Nov/11
-    Riri Furikawa, commit 1.0
+    Riri Furikawa, commit 1.0 : First commit
+    1.1 : Added error handling to prevent crashes from adding trailing spaces at input
     */
 #include <iostream>
 #include <iomanip>
 #include <sstream>
 #include <string>
-#include <stdexcept>
+#include <algorithm> // for std::remove_if
 
 unsigned long hexToDecimal(const std::string& hexStr) {
     unsigned long decimalValue;
@@ -13,6 +14,13 @@ unsigned long hexToDecimal(const std::string& hexStr) {
     ss << std::hex << hexStr;
     ss >> decimalValue;
     return decimalValue;
+}
+
+// Function to trim leading and trailing whitespace
+std::string trim(const std::string& str) {
+    size_t first = str.find_first_not_of(" \t");
+    size_t last = str.find_last_not_of(" \t");
+    return (first == std::string::npos || last == std::string::npos) ? "" : str.substr(first, last - first + 1);
 }
 
 void calculateErrorRate(const std::string& rawInput) {
@@ -60,7 +68,10 @@ void calculateErrorRate(const std::string& rawInput) {
 int main() {
     std::string rawInput;
     std::cout << "Enter the RAW error rate value (e.g., 130348226 or 000007C4F4C2): ";
-    std::cin >> rawInput;
+    std::getline(std::cin, rawInput);
+
+    // Trim the input to remove leading and trailing spaces
+    rawInput = trim(rawInput);
 
     calculateErrorRate(rawInput);
 
