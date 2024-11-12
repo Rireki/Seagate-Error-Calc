@@ -10,3 +10,8 @@ So I made this app.<br>
 # How to compile
 Compilable on Codeblocks and Visual Studio.<br>
 Console app only.<br>
+The following compilation options have to be turned on if using MinGW<br>
+- Static libgcc
+- Static libstc++
+- Static Linking
+Or else the compiled app will only execute in Codeblocks but not outside of it.
