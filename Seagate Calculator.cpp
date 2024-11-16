@@ -158,7 +158,7 @@ void inputAndCalculate() {
     std::string rawInput;
 
     // Get the raw input from the user
-    std::cout << "Enter the RAW error rate value (e.g., 130348226 or 000007C4F4C2): ";
+    std::cout << "Enter the RAW error rate value (e.g., 000007C4F4C2): ";
     std::getline(std::cin, rawInput);
 
     // Trim the input to remove leading and trailing spaces
