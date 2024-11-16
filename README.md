@@ -8,11 +8,12 @@ https://s.i.wtf has the calculator but it's online and I don't want to go online
 So I made this app.<br>
 
 # How to compile
-Compilable on Codeblocks and Visual Studio.<br>
+Compilable on Codeblocks and Visual Studio 2005 to 2022.<br>
 Console app only.<br>
+Make a new console c++ project on Codeblocks if to compile on that and copy paste the .cpp file.
 The following compilation options have to be turned on if using MinGW<br>
 - Static libgcc
 - Static libstc++
-- Static Linking
-<br>
+- Static Linking<br>
+
 Or else the compiled app will only execute in Codeblocks but not outside of it.
