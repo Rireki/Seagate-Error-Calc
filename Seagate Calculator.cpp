@@ -52,9 +52,8 @@ void calculateErrorRate(const std::string& rawInput) {
         // Calculate error rate
         double errorRate = (denominator == 0) ? 0.0 : (static_cast<double>(numerator) / denominator) * 100;
 
-        // Calculate "errors per X operations"
-        const unsigned long exampleErrors = 20; // Example error count
-        unsigned long operationsPerError = (denominator == 0) ? 0 : static_cast<unsigned long>(exampleErrors * static_cast<double>(denominator) / numerator);
+        // Calculate "operations per 1 error"
+        unsigned long operationsPerError = (numerator == 0) ? 0 : static_cast<unsigned long>(denominator / static_cast<double>(numerator));
 
         // Output results
         std::cout << "Decimal -> " << hexToDecimal(rawInput) << std::endl;
@@ -69,8 +68,7 @@ void calculateErrorRate(const std::string& rawInput) {
         std::cout << std::endl;
 
         if (numerator > 0) {
-            std::cout << "Or " << exampleErrors << " errors out of approximately " 
-                      << operationsPerError << " operations." << std::endl;
+            std::cout << "1 error out of approximately " << operationsPerError << " operations." << std::endl;
         }
     } catch (const std::invalid_argument& e) {
         std::cerr << "Error: Invalid input format. Please enter a hexadecimal string." << std::endl;
@@ -81,7 +79,7 @@ void calculateErrorRate(const std::string& rawInput) {
 
 int main() {
     std::string rawInput;
-    std::cout << "Enter the RAW error rate value (e.g., 000007C4F4C2): ";
+    std::cout << "Enter the RAW error rate value (e.g., 130348226 or 000007C4F4C2): ";
     std::getline(std::cin, rawInput);
 
     // Trim the input to remove leading and trailing spaces
