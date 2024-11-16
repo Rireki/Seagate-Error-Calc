@@ -1,3 +1,8 @@
+/*2024/Nov/11
+    Riri Furikawa, commit 1.0 : First commit
+    1.1 : Added error handling to prevent crashes from adding trailing spaces at input
+    2.0 : Migrated from Codeblocks to Visual Studio 2005, added a clarifying statement for the result of the app.
+    */
 // Seagate Calculator.cpp : Defines the entry point for the console application.
 //
 
