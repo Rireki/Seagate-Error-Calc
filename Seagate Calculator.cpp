@@ -28,6 +28,33 @@ std::string trim(const std::string& str) {
     return (first == std::string::npos || last == std::string::npos) ? "" : str.substr(first, last - first + 1);
 }
 
+// Function to categorize the error rate
+std::string categorizeErrorRate(double errorRate) {
+    if (errorRate >= 0.0001 && errorRate <= 0.001) {
+        return "Negligible";
+    }
+    if (errorRate >= 0.005 && errorRate <= 0.01) {
+        return "Warning";
+    }
+    if (errorRate >= 0.1 && errorRate <= 1.0) {
+        return "Bad";
+    }
+    return "Normal"; // For other cases that don't fall within the above ranges
+}
+
+void generateAsciiTable(double errorRate) {
+    std::cout << "\n+-------------------------+-----------------+" << std::endl;
+    std::cout << "| Error Rate Classification | Error Rate (%) |" << std::endl;
+    std::cout << "+-------------------------+-----------------+" << std::endl;
+
+    std::string classification = categorizeErrorRate(errorRate);
+
+    std::cout << "| " << std::left << std::setw(24) << classification << " | ";
+    std::cout << std::fixed << std::setprecision(4) << errorRate << "       |" << std::endl;
+
+    std::cout << "+-------------------------+-----------------+" << std::endl;
+}
+
 void calculateErrorRate(const std::string& rawInput) {
     if (rawInput.length() > 12) {
         std::cerr << "Error: Input too long. Please enter a 12-character or shorter hexadecimal string." << std::endl;
@@ -70,6 +97,10 @@ void calculateErrorRate(const std::string& rawInput) {
         if (numerator > 0) {
             std::cout << "1 error out of approximately " << operationsPerError << " operations." << std::endl;
         }
+
+        // Generate the ASCII table for error classification
+        generateAsciiTable(errorRate);
+
     } catch (const std::invalid_argument& e) {
         std::cerr << "Error: Invalid input format. Please enter a hexadecimal string." << std::endl;
     } catch (const std::out_of_range& e) {
@@ -79,7 +110,7 @@ void calculateErrorRate(const std::string& rawInput) {
 
 int main() {
     std::string rawInput;
-    std::cout << "Enter the RAW error rate value (e.g., 130348226 or 000007C4F4C2): ";
+    std::cout << "Enter the RAW error rate value (e.g., 000007C4F4C2): ";
     std::getline(std::cin, rawInput);
 
     // Trim the input to remove leading and trailing spaces
