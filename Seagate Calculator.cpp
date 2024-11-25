@@ -54,17 +54,9 @@ std::string categorizeErrorRate(double errorRate) {
 }
 
 void generateAsciiTable(double errorRate) {
-    std::cout << "\n+-------------------------+-----------------+" << std::endl;
-    std::cout << "| Error Rate Classification | Error Rate (%) |" << std::endl;
-    std::cout << "+-------------------------+-----------------+" << std::endl;
-
-    std::string classification = categorizeErrorRate(errorRate);
-
-    std::cout << "| " << std::left << std::setw(24) << classification << " | ";
-    std::cout << std::fixed << std::setprecision(4) << errorRate << "       |" << std::endl;
-
-    std::cout << "+-------------------------+-----------------+" << std::endl;
+    std::cout << "\nPlease consider backing up all data from the hard disk because a non-zero error rate is a warning that the drive is failing.\n";
 }
+
 
 void calculateErrorRate(const std::string& rawInput) {
     std::string cleanedInput = removeSpaces(rawInput);
@@ -92,27 +84,19 @@ void calculateErrorRate(const std::string& rawInput) {
         // Calculate error rate
         double errorRate = (denominator == 0) ? 0.0 : (static_cast<double>(numerator) / denominator) * 100;
 
-        // Calculate "operations per 1 error"
-        unsigned long operationsPerError = (numerator == 0) ? 0 : static_cast<unsigned long>(denominator / static_cast<double>(numerator));
-
         // Output results
         std::cout << "Decimal -> " << hexToDecimal(rawInput) << std::endl;
         std::cout << "Hexadecimal -> " << paddedInput.substr(0, 4) << " " << paddedInput.substr(4, 8) << std::endl;
-        std::cout << "True error rate: " << numerator << " / " << denominator << " = " 
+        std::cout << "True error rate: " << numerator << " / " << denominator << " = "
                   << std::fixed << std::setprecision(8) << errorRate << "%";
 
         if (numerator == 0) {
             std::cout << " (No errors were ever seen.)";
+        } else {
+            std::cout << "\n(Please consider backing up all data from the hard disk because a non-zero error rate is a warning that the drive is failing.)";
         }
 
         std::cout << std::endl;
-
-        if (numerator > 0) {
-            std::cout << "1 error out of approximately " << operationsPerError << " operations." << std::endl;
-        }
-
-        // Generate the ASCII table for error classification
-        generateAsciiTable(errorRate);
 
     } catch (const std::invalid_argument& e) {
         std::cerr << "Error: Invalid input format. Please enter a hexadecimal string." << std::endl;
