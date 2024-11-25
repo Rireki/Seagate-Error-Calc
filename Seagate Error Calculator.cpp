@@ -5,6 +5,7 @@
     2.0 : Migrated from Codeblocks to Visual Studio 2008, added a clarifying statement for the result of the app.
 2024/Nov/17:
 	2.1 : Added a selection to make the program able to restart or to quit after output.
+	Migrated from Visual Studio 2008 to Visual Studio .NET 2003 for Win95 compability.
     */
 // Seagate Calculator.cpp : Defines the entry point for the console application.
 //
